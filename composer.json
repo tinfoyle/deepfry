@@ -1,6 +1,7 @@
 {
     "require": {
-        "mirazmac/php-deep-fry": "^1.0"
+        "mirazmac/php-deep-fry": "^1.0",
+        "predis/predis": "^1.1"
     },
 
     "autoload": {

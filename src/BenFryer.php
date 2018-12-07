@@ -8,7 +8,7 @@
 
 namespace BenFryer;
 
-
+use Predis;
 use MirazMac\DeepFry\Fryer;
 
 class BenFryer extends Fryer
@@ -25,9 +25,6 @@ class BenFryer extends Fryer
      */
     protected $imageDirectory = 'fryer';
 
-
-
-
     /**
      * Create a new Fryer instance
      *
@@ -37,6 +34,41 @@ class BenFryer extends Fryer
     {
     }
 
+    public function saveDat($url, $base)
+    {
+        $redis = new Predis\Client(array(
+            'scheme'   => 'tcp',
+            'host'     => '127.0.0.1',
+            'port'     => 6379,
+            'database' => 1
+        ));
+        $redis->set($url, $base);
+        return;
+    }
+
+    public function checkDat($url)
+    {
+        $redis = new Predis\Client(array(
+            'scheme'   => 'tcp',
+            'host'     => '127.0.0.1',
+            'port'     => 6379,
+            'database' => 1
+        ));
+        $exists = $redis->exists($url);
+        return $exists;
+    }
+
+    public function getDat($url)
+    {
+        $redis = new Predis\Client(array(
+            'scheme'   => 'tcp',
+            'host'     => '127.0.0.1',
+            'port'     => 6379,
+            'database' => 1
+        ));
+        $return = $redis->get($url);
+        return $return;
+    }
 
     public function dropIn($imagePath)
     {
@@ -95,7 +127,6 @@ class BenFryer extends Fryer
         $now = date("Y-m-d H:i:s");
         $formatted = '[' . $now . '] ';
         $formatted .= $ip . ' - ';
-        error_log(json_encode($imageUrl));
         if (is_object($imageUrl)) {
             $imageUrl = json_encode($imageUrl);
         }
@@ -107,30 +138,17 @@ class BenFryer extends Fryer
     public function misEnPlace ($url)
     {
 	    $headers = get_headers($url);
-        error_log('=================================================');
-        error_log(json_encode($headers));
-        error_log('=================================================');
-
 	    if ($headers[0] == 'HTTP/1.1 200 OK' || $headers[0] == 'HTTP/1.0 200 OK'  ) {
-
 	        foreach ($headers as $header) {
 	            $parseHeader = explode(' ', $header);
-
 	            if ($parseHeader[0] == 'Content-Length:') {
 	                $filesize = $parseHeader[1];
-                    error_log($filesize);
                     return $filesize;
                 }
             }
         } else {
             return 'Header not 200.\nHeader received:' . $headers[0];
 	    }
-
-
-
-
-
-
     }
 
 }

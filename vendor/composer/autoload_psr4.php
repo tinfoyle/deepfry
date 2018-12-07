@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Predis\\' => array($vendorDir . '/predis/predis/src'),
     'MirazMac\\DeepFry\\' => array($vendorDir . '/mirazmac/php-deep-fry/src'),
 );

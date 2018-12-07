@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInita4e9e3809e8f58e2b9e7d653481801d7
 {
     public static $prefixLengthsPsr4 = array (
+        'P' => 
+        array (
+            'Predis\\' => 7,
+        ),
         'M' => 
         array (
             'MirazMac\\DeepFry\\' => 17,
@@ -14,6 +18,10 @@ class ComposerStaticInita4e9e3809e8f58e2b9e7d653481801d7
     );
 
     public static $prefixDirsPsr4 = array (
+        'Predis\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/predis/predis/src',
+        ),
         'MirazMac\\DeepFry\\' => 
         array (
             0 => __DIR__ . '/..' . '/mirazmac/php-deep-fry/src',
