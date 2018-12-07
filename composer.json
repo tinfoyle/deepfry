@@ -1,7 +1,6 @@
 {
     "require": {
-        "mirazmac/php-deep-fry": "^1.0",
-        "illuminate/redis": "^5.7"
+        "mirazmac/php-deep-fry": "^1.0"
     },
 
     "autoload": {
