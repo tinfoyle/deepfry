@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>DeepFry</title>
+</head>
+<script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+<script>
+
+imageUrl = "http://images6.fanpop.com/image/photos/36000000/Spongebob-random-36058511-240-200.jpg";
+console.log('image url to be sent: ' + imageUrl);
+function doPost () {
+    $.post( "https://benjaminp.tech/deepfry/", JSON.stringify({ 0: imageUrl, 1: imageUrl }))
+        .done(function( data ) {
+            console.log(data);
+            $('#image').attr('src',data[0]);
+            console.log(data[0]);
+        });
+}
+doPost();
+</script>
+<body>
+
+<h1>DeepFry</h1>
+
+<img id="image" src="">
+</body>
+</html>

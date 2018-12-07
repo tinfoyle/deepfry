@@ -1,0 +1,11 @@
+{
+    "require": {
+        "mirazmac/php-deep-fry": "^1.0",
+        "illuminate/redis": "^5.7"
+    },
+
+    "autoload": {
+        "classmap": ["src/"]
+    }
+
+}
